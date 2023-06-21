@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::get('/index', function () {
 Route::resource('barang', BarangController::class);
 Route::resource('peminjam', PeminjamController::class);
 Route::resource('transaksi', TransaksiController::class);
+Route::resource('laporan', LaporanController::class);
 
 // Route::get('/peminjam', [PeminjamController::class, 'index']);
 // Route::post('/peminjam', [PeminjamController::class,'store']);
