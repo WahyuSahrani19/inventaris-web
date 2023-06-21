@@ -15,6 +15,7 @@ class BarangSeeder extends Seeder
     {   
 
         $data = [
+            [
             "nama"=>"Komputer Mac",
             "jumlah"=>"30"
         ],
@@ -127,10 +128,7 @@ class BarangSeeder extends Seeder
             "jumlah"=>"1"
         ],
 
-        [
-
-            
-        ];
+        ]
         foreach ($data as $value) {
              DB::table('barang')->insert($value);
         }

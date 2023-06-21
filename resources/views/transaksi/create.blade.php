@@ -1,5 +1,13 @@
 @extends('part.main')
 @section('content')
+@if($errors->any())
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Error !</strong> <span>{{$errors->first()}}</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+@endif
 <strong class='text-center'>Transaksi Peminjaman</strong><br><br>
 <div class='row'>
     <div class='col-lg-8 border border-success border-4'>
@@ -7,29 +15,28 @@
             @method('post')
             @csrf
 
-        <div class="dropdown">
-            <label for="valuegoods" class="form-label">Nomor Identitas</label>
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown link
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+        <div class="mb-3">
+            <label for="peminjam" class="form-label">Peminjam</label>
+            <select name="peminjam" id="" class="form-control">
+            @foreach ($peminjam as $item)
+                <option value="{{$item->id}}" {{old("peminjam")==$item->id ? 'selected':''}}>{{$item->nomor_identitas}} - {{$item->nama}}</option>
+            @endforeach
+            </select>
         </div>
         <div class="mb-3">
-            <label for="inputborrow" class="form-label">Nama Peminjam</label>
-            <input name='nama' type="text" class="form-control" id="inputborrow" required>
+            <label for="barang" class="form-label">Barang</label>
+            <select name="barang" id="" class="form-control">
+            @foreach ($barang as $item)
+            @if ($item->jumlah > 0)
+             <option value="{{$item->id}}" {{old("barang")==$item->id ? 'selected':''}}>{{$item->nama}} - {{$item->jumlah}}</option>   
+            @endif
+            @endforeach
+            </select>
         </div>
-    <div class="mb-3">
-      <label for="valuegoods" class="form-label">Jumlah</label>
-      <input name='jumlah' type="number" class="form-control" id="valuegoods" min=1 required>
-    </div>
-    <div class="mb-3">
-        <label for="valuegoods" class="form-label">Tanggal Peminjaman</label>
-        <input name='jumlah' type="number" class="form-control" id="valuegoods" min=1 required>
-    </div>
+        <div class="mb-3">
+            <label for="jumlah" class="form-label">Jumlah</label>
+            <input valueAsNumber type="number" name="jumlah" id="jumlah" class="form-control" value="{{old('jumlah')}}" min="1" required>
+        </div>
     <button type="submit" class="btn btn-primary mb-1">Submit</button>
   </form>
     </div>

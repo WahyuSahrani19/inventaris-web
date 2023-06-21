@@ -11,4 +11,9 @@ class Barang extends Model
     protected $table = 'barang';
     protected $guarded = ['id'];
 
+    public function tansactions(): HasMany
+    {
+        return $this->hasMany(Transaksi::class, 'barang_id', 'id');
+    }
+
 }
