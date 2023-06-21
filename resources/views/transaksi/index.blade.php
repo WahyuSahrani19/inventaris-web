@@ -6,22 +6,33 @@
       <table class="table m-0">
         <thead>
         <tr>
-        <th>Kode peminjaman</th>
+        <th>No</th>
         <th>Nama Peminjam</th>
+        <th>Nama Barang</th>
         <th>Jumlah</th>
         <th>Tanggal Pinjam</th>
         <th>Tanggal Pengembalian</th>
         <th>Aksi</th>
         </tr>
         </thead>
-        <tbody> 
+        <tbody>
+          @foreach ($trans as $key=>$item)   
+          <tr>
+            <td>{{$key+1}}</td>
+            <td>{{$item->peminjam->nama}}</td>
+            <td>{{$item->barang->nama}}</td>
+            <td>{{$item->jumlah}}</td>
+            <td>{{$item->tgl_pinjam}}</td>
+            <td>{{$item->tgl_balik}}</td>
+            <td></td>
+          </tr>
+          @endforeach
                 {{-- <form action="{{route('transaksi.destroy',['transaksi'=>$item])}}"  method="post" class='d-inline'>
                     @method('delete')
                     @csrf
                 <input type="submit" class="btn btn-danger" value="Delete">
                 </form> --}}
-              </td>
-            </tr>
+              
         </tbody>
       </table>
     </div>

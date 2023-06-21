@@ -25,7 +25,12 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        return view('transaksi.create');
+        $peminjam = Peminjam::all();
+        $barang = Barang::all();
+        return view('transaksi.create',[
+            "peminjam"=> $peminjam,
+            "barang"=>$barang
+        ]);
     }
 
     /**
@@ -33,12 +38,23 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        Transaksi::create([
-            'jumlah'=>$request['jumlah'],
-            'tgl_balik'=>$request['tgl_balik'],
-            'tgl_pinjam'=>$request['tgl_pinjam'],
+        $barang = Barang::find($request['barang']);
+        $request->validate([
+            "barang"=>'required',
+            "peminjam"=>'required',
+            'jumlah'=>'numeric|required|max:'.$barang['jumlah'],
         ]);
-        return redirect()->route('transaksi.index');
+            Transaksi::create([
+                "barang_id"=>$request['barang'],
+                "peminjam_id"=>$request['peminjam'],
+                'jumlah'=>$request['jumlah'],
+                'tgl_pinjam'=>date("y-m-d h:i:s"),
+            ]);
+            Barang::where('id',$request['barang'])->update([
+                "jumlah"=> $request['jumlah'] - $barang['jumlah'] 
+            ]);
+            return redirect()->route('transaksi.index');
+        
     }
 
     /**
