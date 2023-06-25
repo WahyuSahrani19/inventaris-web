@@ -63,6 +63,18 @@
                    </p>
                  </a>
                </li>
+               <li class="nav-item">
+                <form action="{{route('logout')}}" method="post">
+                  @csrf
+                  @method('post')
+                  <button type="submit" class="nav-link bg-dark border-0 text-left">
+                    <i class="nav-icon fas fa-arrow-right"></i>
+                    <p>
+                      Logout
+                    </p>
+                  </button>
+                </form>
+               </li>
                
                
         </ul>

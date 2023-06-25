@@ -24,15 +24,14 @@ use App\Http\Controllers\LoginController;
 //     return view('dashboard');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+
 Route::get('/index', function () {
     return view('index');
 });
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
+Route::post('/login',[LoginController::class,'login'])->name('login.post');
 
 // Route::get('/barang', [BarangController::class, 'index']);
 // Route::post('/barang/store', [BarangController::class,'store']);
@@ -41,11 +40,17 @@ Route::get('/login', function () {
 // Route::patch('/barang/{id}/update',[BarangController::class,'update']);
 // Route::delete('/barang/{id}/delete',[BarangController::class,'destroy']);
 
-Route::resource('barang', BarangController::class);
-Route::resource('peminjam', PeminjamController::class);
-Route::resource('transaksi', TransaksiController::class);
-Route::resource('laporan', LaporanController::class);
-Route::resource('/', DashboardController::class);
+Route::middleware(['auth', 'auth.session'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+    Route::resource('barang', BarangController::class);
+    Route::resource('peminjam', PeminjamController::class);
+    Route::resource('transaksi', TransaksiController::class);
+    Route::resource('laporan', LaporanController::class);
+    Route::resource('/', DashboardController::class);
+    Route::post('/logout', [LoginController::class,'logout'])->name('logout');
+});
 
 // Route::get('/search', 'PostsController@search'->name('search'));
 
