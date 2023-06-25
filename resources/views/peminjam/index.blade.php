@@ -3,7 +3,7 @@
   <div class="card-body p-0">
     <div class="table-responsive">
     <a href='{{route('peminjam.create')}}'type="button" class="float-right mb-3 btn btn-success">Tambah Data Peminjam</a>
-      <table class="table m-0">
+      <table id="example1" class="table m-0">
         <thead>
         <tr>
         <th>No</th>

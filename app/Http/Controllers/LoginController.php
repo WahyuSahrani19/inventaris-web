@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaksi;
-use App\Models\Barang;
-use App\Models\Peminjam;
 use Illuminate\Http\Request;
 
-class LaporanController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $trans=Transaksi::all();
-        return view('laporan.index',[
-            'trans'=>$trans
-        ]);
+        return view('login');
     }
 
     /**
@@ -25,7 +19,7 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -33,7 +27,7 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -41,14 +35,7 @@ class LaporanController extends Controller
      */
     public function show(string $id)
     {
-        $trans=Transaksi::find($id);
-        $barang=Barang::find($trans->barang_id);
-        $peminjam=Peminjam::find($trans->peminjam_id);
-        return view('laporan.print',[
-            'trans'=>$trans,
-            'barang'=>$barang,
-            'peminjam'=>$peminjam
-        ]);
+        //
     }
 
     /**

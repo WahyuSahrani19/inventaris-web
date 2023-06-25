@@ -3,12 +3,12 @@
 <div class="card-body p-0">
     <div class="table-responsive">
     <a href='{{route('barang.create')}}'type="button" class="float-right mb-3 btn btn-success">Tambah Barang</a>
-      <table class="table m-0" width="350">
+      <table id="example1" class="table m-0">
         <thead>
         <tr>
           <th>Kode Barang</th>
           <th>Nama Barang</th>
-          <th>JUMLAH</th>
+          <th>Jumlah</th>
           <th>Aksi</th>
         </tr>
         </thead>

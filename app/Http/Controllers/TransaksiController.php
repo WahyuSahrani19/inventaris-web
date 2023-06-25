@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Peminjam;
-use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use Illuminate\Http\Request;
+
 
 class TransaksiController extends Controller
 {
@@ -51,7 +52,7 @@ class TransaksiController extends Controller
                 'tgl_pinjam'=>date("y-m-d h:i:s"),
             ]);
             Barang::where('id',$request['barang'])->update([
-                "jumlah"=> $request['jumlah'] - $barang['jumlah'] 
+                "jumlah"=> $barang['jumlah'] - $request['jumlah']
             ]);
             return redirect()->route('transaksi.index');
         
@@ -70,7 +71,14 @@ class TransaksiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $trans=Transaksi::find($id);
+        $barang=Barang::find($trans->barang_id);
+        $peminjam=Peminjam::find($trans->peminjam_id);
+        return view('transaksi.edit',[
+            'trans'=>$trans,
+            'barang'=>$barang,
+            'peminjam'=>$peminjam
+        ]);
     }
 
     /**
@@ -78,7 +86,13 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Transaksi::where('id',$id)->update([
+            // 'nama'=>$request['nama'],
+            // 'jumlah'=>$request['jumlah']
+            'dikembalikan'=>true,
+            'tgl_balik'=>date("y-m-d h:i:s"),
+        ]);
+        return redirect()->route('transaksi.index');
     }
 
     /**

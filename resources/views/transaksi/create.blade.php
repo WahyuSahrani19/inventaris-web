@@ -2,7 +2,7 @@
 @section('content')
 @if($errors->any())
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Error !</strong> <span>{{$errors->first()}}</span>
+    <strong>Error !</strong> <span>Tidak Boleh Melebihi Jumlah Barang</span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

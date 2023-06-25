@@ -2,31 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Barang;
 use App\Models\Transaksi;
+use App\Models\Barang;
+use App\Models\Peminjam;
+use Illuminate\Http\Request;
 
-class BarangController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $goods=Barang::all();
         $trans=Transaksi::all();
-        return view('barang.index',[
+        $goods=Barang::all();
+        $borrow=Peminjam::all();
+        $total=$goods->sum('jumlah')+$trans->sum('jumlah');
+        return view('dashboard',[
+            'trans'=>$trans,
             'goods'=>$goods,
-            'trans'=>$trans
+            'borrow'=>$borrow,
+            'total'=>$total
         ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('barang.create');
+        //
     }
 
     /**
@@ -34,19 +39,15 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        Barang::create([
-            'nama'=>$request['nama'],
-            'jumlah'=>$request['jumlah']        
-        ]);
-        return redirect()->route('barang.index');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-
+        //
     }
 
     /**
@@ -54,23 +55,15 @@ class BarangController extends Controller
      */
     public function edit(string $id)
     {
-        $goods=Barang::find($id);
-        return view('barang.edit',[
-            'goods'=>$goods
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {   
-        $trans=Transaksi::find($id);
-        Barang::where('id',$id)->update([
-            'nama'=>$request['nama'],
-            'jumlah'=>$request['jumlah']
-        ]);
-        return redirect()->route('barang.index');
+    {
+        //
     }
 
     /**
@@ -78,7 +71,6 @@ class BarangController extends Controller
      */
     public function destroy(string $id)
     {
-        Barang::where('id',$id)->delete();
-        return redirect()->route('barang.index');
+        //
     }
 }

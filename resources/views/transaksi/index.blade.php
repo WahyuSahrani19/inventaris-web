@@ -3,7 +3,7 @@
 <div class="card-body p-0">
     <div class="table-responsive">
     <a href='{{route('transaksi.create')}}'type="button" class="float-right mb-3 btn btn-success">Tambah</a>
-      <table class="table m-0">
+      <table id="example1" class="table m-0">
         <thead>
         <tr>
         <th>No</th>
@@ -24,7 +24,11 @@
             <td>{{$item->jumlah}}</td>
             <td>{{$item->tgl_pinjam}}</td>
             <td>{{$item->tgl_balik}}</td>
+            @if(!$item->tgl_balik)
+            <td><a href="{{route('transaksi.edit',['transaksi'=>$item])}}" type="button" class="btn btn-info">👍</a></td>
+            @else
             <td></td>
+              @endif
           </tr>
           @endforeach
                 {{-- <form action="{{route('transaksi.destroy',['transaksi'=>$item])}}"  method="post" class='d-inline'>

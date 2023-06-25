@@ -5,6 +5,9 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +20,19 @@ use App\Http\Controllers\LaporanController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 Route::get('/index', function () {
     return view('index');
 });
-
+Route::get('/login', function () {
+    return view('login');
+});
 
 // Route::get('/barang', [BarangController::class, 'index']);
 // Route::post('/barang/store', [BarangController::class,'store']);
@@ -39,6 +45,9 @@ Route::resource('barang', BarangController::class);
 Route::resource('peminjam', PeminjamController::class);
 Route::resource('transaksi', TransaksiController::class);
 Route::resource('laporan', LaporanController::class);
+Route::resource('/', DashboardController::class);
+
+// Route::get('/search', 'PostsController@search'->name('search'));
 
 // Route::get('/peminjam', [PeminjamController::class, 'index']);
 // Route::post('/peminjam', [PeminjamController::class,'store']);

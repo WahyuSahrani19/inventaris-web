@@ -13,13 +13,8 @@ class BarangSeeder extends Seeder
      */
     public function run(): void
     {   
-
         $data = [
-<<<<<<< HEAD
         [
-=======
-            [
->>>>>>> bcf5ce2f9080bac78236a6a87912e1b9e9712814
             "nama"=>"Komputer Mac",
             "jumlah"=>30
         ],
@@ -131,7 +126,6 @@ class BarangSeeder extends Seeder
             "nama"=>"Baterai Nikon",
             "jumlah"=>2
         ],
-<<<<<<< HEAD
         [
             "nama"=>"Baterai Sony",
             "jumlah"=>2
@@ -231,11 +225,16 @@ class BarangSeeder extends Seeder
         [
             "nama"=>"Handy Recorder H6",
             "jumlah"=>1
-        ]];
-=======
-
+        ],
+        [
+            "nama"=>"Lemari dinding jaringan",
+            "jumlah"=>1
+        ],
+        [
+            "nama"=>"Jam dinding",
+            "jumlah"=>1
         ]
->>>>>>> bcf5ce2f9080bac78236a6a87912e1b9e9712814
+    ];
         foreach ($data as $value) {
              DB::table('barang')->insert($value);
         }
